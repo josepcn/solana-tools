@@ -1,1 +1,1 @@
-./rust/hello-wasm/target/*
+rust/hello-wasm/target
