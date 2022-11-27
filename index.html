@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
+<html lang="en" class="no-js" >
+  <head>
+    <meta charset="utf-8" />
+    <title>hello-wasm example</title>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <!-- CSS ================================================== -->
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
 
-</body>
+  </head>
+  <body id="top">
+    <script type="module">
+      import init, { foo } from "./rust/hello-wasm/pkg/hello_wasm.js";
+      await init();
+    //   init().then(() => {
+    //     //greet("WebAssembly");
+    //   });
+
+    //import { greet } from "./rust/hello-wasm/pkg/hello_wasm.js";
+    const addressInput = document.getElementById('address_input');
+    addressInput.addEventListener('input', addressUpdated);
+    function addressUpdated(e) {
+        const msg = foo(e.target.value);
+        //alert(msg);
+        console.log(msg);
+        //alert("aa");
+    }
+
+    </script>
+
+    <div class="column lg-6 tab-12">
+        <form>
+            <div>
+                <label for="address">Address</label>
+                <input class="u-fullwidth" type="text" placeholder="" id="address_input">
+            </div>
+        </form>
+    </div>
+
+  </body>
 </html>
-
-
