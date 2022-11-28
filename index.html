@@ -22,6 +22,21 @@
     addressInput.addEventListener('input', addressUpdated);
     function addressUpdated(e) {
         const msg = foo(e.target.value);
+        if (msg.error) {
+            const dataHeader = document.getElementById('data_header');
+            dataHeader.innerHTML = `Not a valid address: ${msg.error}`;
+        } else {
+            const dataHeader = document.getElementById('data_header');
+            dataHeader.innerHTML = `Data`;
+
+            const table = document.getElementById('attributes_table');
+            table.innerHTML = "";
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = "Encoding";
+            cell2.innerHTML = msg.encoding;
+        }
         //alert(msg);
         console.log(msg);
         //alert("aa");
@@ -32,11 +47,20 @@
     <div class="column lg-6 tab-12">
         <form>
             <div>
-                <label for="address">Address</label>
+                <label for="address">Address:</label>
                 <input class="u-fullwidth" type="text" placeholder="" id="address_input">
             </div>
         </form>
+        <div class="table-responsive">
+            <label id="data_header"></label>
+            <table id="attributes_table">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
 
   </body>
 </html>
